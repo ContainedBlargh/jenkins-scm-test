@@ -2,10 +2,15 @@ pipeline {
     agent any
     
     stages {
-        stage('Greeting') {
+        stage('Checkout') {
             steps {
-                echo "Hello, World!"
                 echo "$GIT_BRANCH"
+            }
+        }
+        stage('Build containers') {
+            steps {
+                pwsh('docker container list -a')
+                pwsh('docker compose up -d')
             }
         }
     }
