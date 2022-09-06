@@ -3,7 +3,9 @@ pipeline {
     
     stages {
         stage('Pull repositoy') {
-            pwsh('git pull')
+            steps {
+                pwsh('git pull')
+            }
         }
         stage('Setup containers') {
             steps {
