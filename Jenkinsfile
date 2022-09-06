@@ -13,10 +13,12 @@ pipeline {
             }
         }
         stage('Test containers') {
-            script {
-                output = pwsh('docker container list -a')
+            steps {
+                script {
+                    output = pwsh('docker container list -a')
+                }
+                echo "$output"
             }
-            echo "$output"
         }
         stage('Stop containers') {
             steps {
