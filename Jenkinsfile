@@ -9,9 +9,14 @@ pipeline {
         }
         stage('Setup containers') {
             steps {
-                pwsh('docker container list -a')
                 pwsh('docker compose up -d')
             }
+        }
+        stage('Test containers') {
+            script {
+                output = pwsh('docker container list -a')
+            }
+            echo "$output"
         }
         stage('Stop containers') {
             steps {
