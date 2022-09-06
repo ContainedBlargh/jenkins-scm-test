@@ -2,6 +2,9 @@ pipeline {
     agent any
     
     stages {
+        stage('Pull repositoy') {
+            pwsh('git pull')
+        }
         stage('Setup containers') {
             steps {
                 pwsh('docker container list -a')
