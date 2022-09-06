@@ -2,15 +2,15 @@ pipeline {
     agent any
     
     stages {
-        stage('Checkout') {
-            steps {
-                echo "$GIT_BRANCH"
-            }
-        }
-        stage('Build containers') {
+        stage('Setup containers') {
             steps {
                 pwsh('docker container list -a')
                 pwsh('docker compose up -d')
+            }
+        }
+        stage('Stop containers') {
+            steps {
+                pwsh('docker compose down')
             }
         }
     }
